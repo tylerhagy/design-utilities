@@ -1,0 +1,121 @@
+/*
+ * Shared design tokens — ORCA (ooux) / jobmap / priority-guide
+ * ==============================================================
+ * This is the SOURCE OF TRUTH for the family's CSS custom properties.
+ * Each app keeps a manually-synced copy of this `:root` block (and the
+ * dark-mode override block) pasted into its own `index.html`. See
+ * shared/README.md for why, and how to check an app's copy for drift.
+ *
+ * Naming convention: adopts ORCA's convention where the three disagreed,
+ * since it was the most complete (named type scale `--t-*`, spacing scale
+ * `--s*`, single `--radius`) — per the task spec's recommendation. Every
+ * value below that differs from what an app currently ships has a comment
+ * explaining why, so per-app implementors aren't guessing.
+ */
+
+:root {
+  /* ---------- Ink / surface ---------- */
+  --ink: #16181d;      /* ORCA + jobmap agree on this value; overrides priority-guide's #101319 (2-of-3 majority) */
+  --bg: #f6f7f9;       /* ORCA + jobmap agree on this value; overrides priority-guide's #f3f4f6 (2-of-3 majority) */
+  --panel: #fff;       /* agreed across all three, unchanged */
+
+  --dim: #6b7280;      /* canonical NAME chosen from jobmap + priority-guide ("--dim", 2-of-3); canonical VALUE chosen from ORCA + jobmap (#6b7280, 2-of-3). ORCA currently calls this "--muted" and will need to rename to "--dim" in its per-app task. Overrides priority-guide's #525a67 */
+  --faint: #9aa1ac;    /* ORCA + jobmap agree on this value; overrides priority-guide's #98a0ac (2-of-3 majority) */
+
+  /* ---------- Hairlines ---------- */
+  --line: rgba(16,18,22,.11);   /* ORCA + jobmap agree on this value; overrides priority-guide's rgba(16,19,25,.085) */
+  --line-2: rgba(16,18,22,.2);  /* canonical NAME adopted from priority-guide's two-hairline idea (it already ships "--line"/"--line-2"); canonical VALUE reused from ORCA's existing "--line-strong" token (same concept, different name) rather than priority-guide's own rgba(16,19,25,.15), to stay tonally consistent with --line's rgb base */
+
+  /* ---------- Accent ---------- */
+  --accent: #2563eb;                   /* agreed across all three, unchanged */
+  --accent-soft: rgba(37,99,235,.10);  /* agreed across all three, unchanged */
+  --on-accent: #fff;                   /* agreed across all three (explicit in ORCA, implicit via white button text in the others), unchanged */
+
+  /* ---------- Status colors ---------- */
+  --ok: #177245;                    /* canonical NAME chosen from jobmap + priority-guide ("--ok", 2-of-3); VALUE agrees with ORCA's "--signed". ORCA will need to rename "--signed" -> "--ok" in its per-app task */
+  --ok-soft: rgba(23,114,69,.11);   /* carried over from ORCA's "--signed-soft" (only app with a soft variant of this color) */
+  --on-ok: #fff;                    /* carried over from ORCA's "--on-signed" */
+  --warn: #9a6700;                  /* agreed across all three, unchanged */
+  --warn-soft: rgba(154,103,0,.11); /* re-derived as an alpha tint of --warn, replacing ORCA's hardcoded near-white hex (#fdf8ec), so all *-soft tokens follow the same rgba(color, alpha)-over-panel pattern */
+  --danger: #d0342c;                /* from ORCA — the only app with a true hard-error color today; jobmap/priority-guide have no equivalent yet */
+  --danger-soft: rgba(208,52,44,.09); /* from ORCA, unchanged */
+  --flag: #b8541f;                  /* from jobmap + priority-guide, agreed value, unchanged — "flagged" (needs attention) is kept distinct from --danger (hard error) */
+  --act: #b3261e;                   /* from priority-guide only (its 5th status color, "needs action"). Kept as its own value even though it reads close to --danger — reconciling the two is a per-app follow-up decision, not made here */
+  --none: #8a8f98;                  /* from jobmap + priority-guide, agreed value, unchanged */
+
+  /* ---------- Type scale ---------- */
+  /* Named-token convention adopted from ORCA (the only app with one at all). */
+  --t-micro: 11px;
+  --t-small: 12.5px;  /* changed from ORCA's 12px to match jobmap's and priority-guide's shared hardcoded "small" text size (13.5px body / 12.5px small — 2-of-3 majority) */
+  --t-body: 13.5px;   /* changed from ORCA's 13px to match jobmap's and priority-guide's shared hardcoded body text size (2-of-3 majority) */
+  --t-ui: 14px;
+  --t-title: 16px;
+  --t-lede: 17px;
+  --t-display: 28px;
+  --t-hero: 38px;
+
+  /* ---------- Spacing scale ---------- */
+  /* Adopted from ORCA (the only app with a named scale — jobmap and
+     priority-guide hardcode px throughout). No values changed; per-app
+     tasks will map existing hardcoded spacing to the nearest step. */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 28px;
+  --s7: 96px;
+
+  /* ---------- Radius ---------- */
+  --radius: 10px;     /* ORCA's single-value convention, adopted as recommended — use for cards/panels (8-12px per the aesthetic direction) */
+  --radius-sm: 7px;   /* NEW addition beyond ORCA's original single value: controls need a visibly smaller radius than cards per Tyler's aesthetic direction (~6-8px on controls vs ~8-12px on cards/panels). Replaces priority-guide's 3-step "--r-sm/md/lg" with a simpler 2-step scheme */
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(.22,.61,.36,1); /* adopted from jobmap's and priority-guide's existing "--ease" token (ORCA uses the identical curve inline but never named it). Standardized per Tyler's aesthetic direction as the one shared ease for hover/focus transitions, used at 120-160ms */
+
+  /* ---------- Shadow ---------- */
+  --shadow-sm: 0 1px 2px rgba(16,18,22,.04), 0 14px 34px -22px rgba(16,18,22,.30);
+  /* NEW addition, adapted from priority-guide's "--sheet" (the only app with a shadow token today), re-based onto --ink's rgb (16,18,22) instead of priority-guide's own (16,19,25) so it stays tonally consistent with --line. Per Tyler's aesthetic direction: soft, low-opacity shadows rather than heavy borders or drop shadows */
+
+  /* ---------- Misc ---------- */
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace; /* from ORCA, unchanged; the only app that has needed a mono stack so far */
+}
+
+/* ==============================================================
+ * Dark mode — matches ORCA's existing approach (the only one of the
+ * three apps that has dark mode today). jobmap and priority-guide have
+ * no dark mode to draw values from, so their per-app tasks are the first
+ * time they'll gain it; values below marked "new" are best-guess
+ * derivations following the same brightening pattern ORCA already uses
+ * elsewhere in this block, and should get an eyeball pass during that
+ * per-app dark-mode QA rather than being treated as final.
+ * ============================================================== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) {
+    --ink: #f5f5f7;
+    --bg: #16171a;
+    --panel: #1f2024;
+    --dim: #98989d;       /* was ORCA's "--muted" dark value; renamed to match the light-mode "--dim" rename above */
+    --faint: #7c7c84;
+
+    --line: rgba(255,255,255,.13);
+    --line-2: rgba(255,255,255,.2);  /* was ORCA's "--line-strong" dark value; renamed to "--line-2" to match the light-mode rename above */
+
+    --accent: #0a84ff;
+    --accent-soft: rgba(10,132,255,.16);
+    --on-accent: #fff;
+
+    --ok: #30d158;                       /* was ORCA's "--signed" dark value */
+    --ok-soft: rgba(48,209,88,.14);      /* was ORCA's "--signed-soft" dark value */
+    --on-ok: #0e1a14;                    /* was ORCA's "--on-signed" dark value */
+    --warn: #e0b25a;
+    --warn-soft: rgba(224,178,90,.13);
+    --danger: #ff453a;
+    --danger-soft: rgba(255,69,58,.14);
+    --flag: #ff9c52;    /* NEW: no existing dark value in any app (jobmap/priority-guide have no dark mode); brightened from light-mode --flag (#b8541f) following the same lighten-and-saturate pattern ORCA applies to --danger */
+    --act: #ff6b5c;     /* NEW: same situation as --flag; brightened from light-mode --act (#b3261e) following the --danger pattern */
+    --none: #969ba6;    /* NEW: same situation as --flag/--act; lightened from light-mode --none (#8a8f98) to stay legible on the dark background while reading as neutral */
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.3), 0 14px 34px -22px rgba(0,0,0,.6); /* NEW: dark-surface shadows read against black rather than --ink, since --ink is near-white in dark mode */
+  }
+}
