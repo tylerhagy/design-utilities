@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Utilities</title>
+<link rel="stylesheet" href="shared/tokens.css">
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: var(--t-body);
+    line-height: 1.5;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--s7) var(--s4) var(--s7);
+  }
+
+  header {
+    margin-bottom: var(--s6);
+  }
+
+  h1 {
+    font-size: var(--t-hero);
+    margin: 0 0 var(--s2);
+    letter-spacing: -0.02em;
+  }
+
+  header p {
+    margin: 0;
+    color: var(--dim);
+    font-size: var(--t-lede);
+  }
+
+  .tools {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s4);
+  }
+
+  .tool {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: var(--s5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s5);
+  }
+
+  .tool-info h2 {
+    font-size: var(--t-title);
+    margin: 0 0 var(--s1);
+  }
+
+  .tool-info .port {
+    font-family: var(--mono);
+    font-size: var(--t-micro);
+    color: var(--faint);
+    font-weight: 400;
+    margin-left: var(--s2);
+  }
+
+  .tool-info p {
+    margin: 0;
+    color: var(--dim);
+    font-size: var(--t-body);
+    max-width: 44ch;
+  }
+
+  .tool a.open {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s2) var(--s4);
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--on-accent);
+    text-decoration: none;
+    font-size: var(--t-ui);
+    font-weight: 500;
+    transition: opacity 140ms var(--ease);
+  }
+
+  .tool a.open:hover {
+    opacity: 0.85;
+  }
+
+  footer {
+    margin-top: var(--s6);
+    color: var(--faint);
+    font-size: var(--t-small);
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Design Utilities</h1>
+    <p>Local tools for design and product work.</p>
+  </header>
+
+  <div class="tools">
+    <div class="tool">
+      <div class="tool-info">
+        <h2>ORCA<span class="port">:8042</span></h2>
+        <p>An OOUX object-mapping tool — objects, their attributes and actions, and the relationships between them, with a sign-off on every row.</p>
+      </div>
+      <a class="open" href="http://localhost:8042">Open</a>
+    </div>
+
+    <div class="tool">
+      <div class="tool-info">
+        <h2>jobmap<span class="port">:8043</span></h2>
+        <p>A jobs-to-be-done editor over a markdown file. The markdown is the source of truth.</p>
+      </div>
+      <a class="open" href="http://localhost:8043">Open</a>
+    </div>
+
+    <div class="tool">
+      <div class="tool-info">
+        <h2>priority guide<span class="port">:8044</span></h2>
+        <p>A small local tool for writing priority guides — content first, before anything is laid out.</p>
+      </div>
+      <a class="open" href="http://localhost:8044">Open</a>
+    </div>
+  </div>
+
+  <footer>Each link opens the tool if it's already running locally on its port.</footer>
+</main>
+</body>
+</html>
