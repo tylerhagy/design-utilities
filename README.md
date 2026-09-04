@@ -52,6 +52,41 @@ re-pick it every time. If you're running more than one of these tools at
 once, that's exactly why they each claim a different port instead of sharing
 one.
 
+## Starting all three from a script
+
+Each tool's own `./serve.sh` opens its URL in Chrome once the server is up.
+That's fine from a terminal, and it's the wrong move from a sandboxed or
+non-interactive shell — asking a GUI browser to activate there can hang or
+kill the invoking process, taking the server it just started down with it.
+
+`design-tools.sh`, in this repo, starts all three tools' servers directly in
+the background with no `open` call anywhere, so it's safe to run from
+anything, agents included. For each tool it checks whether its port is
+already listening and leaves it alone if so; otherwise it looks for the
+tool's directory — `ORCA_DIR`, `JOBMAP_DIR` or `PRIORITY_GUIDE_DIR` if set,
+else the default clone locations `~/Projects/ooux`, `~/Projects/jobmap`,
+`~/Projects/priority-guide` — and starts it there. If a tool's directory
+isn't found, it says so for that tool specifically and keeps going with the
+other two. It's safe to re-run any time: already-running tools are reported
+as such, never double-launched.
+
+Install it once, like the tools themselves:
+
+```bash
+ln -s "$PWD/design-tools.sh" ~/.local/bin/design-tools
+```
+
+Then, from anywhere:
+
+```bash
+design-tools
+```
+
+It prints each tool's status — already running, started, or failed with a
+reason — and its URL. It never opens a browser for you, including for the
+landing page below; once the servers are up, open `index.html` or the
+individual URLs yourself.
+
 ## Optional: AI-assisted drafting
 
 Each tool ships its own portable [Claude Code](https://claude.com/claude-code)
