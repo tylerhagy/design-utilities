@@ -64,8 +64,8 @@ the background with no `open` call anywhere, so it's safe to run from
 anything, agents included. For each tool it checks whether its port is
 already listening and leaves it alone if so; otherwise it looks for the
 tool's directory — `ORCA_DIR`, `JOBMAP_DIR` or `PRIORITY_GUIDE_DIR` if set,
-else the default clone locations `~/Projects/ooux`, `~/Projects/jobmap`,
-`~/Projects/priority-guide` — and starts it there. If a tool's directory
+else the tool's folder next to this script, else `~/Projects/ooux`,
+`~/Projects/jobmap`, `~/Projects/priority-guide` — and starts it there. If a tool's directory
 isn't found, it says so for that tool specifically and keeps going with the
 other two. It's safe to re-run any time: already-running tools are reported
 as such, never double-launched.

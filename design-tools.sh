@@ -16,7 +16,10 @@ NAMES=(orca jobmap priority-guide)
 LABELS=("ORCA" "jobmap" "priority guide")
 PORTS=(8042 8043 8044)
 DIR_VARS=(ORCA_DIR JOBMAP_DIR PRIORITY_GUIDE_DIR)
-DEFAULT_DIRS=("$HOME/Projects/ooux" "$HOME/Projects/jobmap" "$HOME/Projects/priority-guide")
+# Where each tool is cloned. Looked for first inside this repo's own folder
+# (the tools are cloned alongside this script), then in ~/Projects.
+SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+REPO_NAMES=(ooux jobmap priority-guide)
 
 STATUSES=()
 DETAILS=()
@@ -28,7 +31,8 @@ while [ "$i" -lt "$count" ]; do
   label="${LABELS[$i]}"
   port="${PORTS[$i]}"
   dir_var="${DIR_VARS[$i]}"
-  default_dir="${DEFAULT_DIRS[$i]}"
+  repo="${REPO_NAMES[$i]}"
+  if [ -d "${SELF_DIR}/${repo}" ]; then default_dir="${SELF_DIR}/${repo}"; else default_dir="$HOME/Projects/${repo}"; fi
   url="http://localhost:${port}"
 
   if lsof -nP -iTCP:"${port}" -sTCP:LISTEN >/dev/null 2>&1; then
