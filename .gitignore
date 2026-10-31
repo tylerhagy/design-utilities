@@ -25,3 +25,13 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# The tools are their own repos, cloned inside this folder
+/ooux/
+/jobmap/
+/priority-guide/
+/protoserve/
+/protodash/
+/threads/
+/threads-sandbox/
+/mermaid-viewer/
