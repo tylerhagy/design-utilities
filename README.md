@@ -105,6 +105,25 @@ with that tool's own `validate.mjs`, and opens it in the app. Drafting is the
 agent's job; editing is the app's. Nothing about this depends on any vault or
 notes of mine — it reads whatever project files you point it at.
 
+## Look and feel
+
+All three share one visual language: a warm off-white ground (`--bg`) with
+white paper surfaces (`--panel`), warm-brown hairlines, a single blue accent
+for anything you can act on, and each tool's own colour in a small rounded
+brand mark in the header. Selection is accent-tinted, hover lifts a surface
+rather than greying it, and the header and cards carry one soft shadow
+each. The values live in [`shared/tokens.css`](shared/tokens.css).
+
+Recent changes worth knowing about:
+
+- **ORCA** — the graph is drawn by [Cytoscape.js](https://js.cytoscape.org)
+  (vendored and inlined by `build.mjs`, so it is still one offline file).
+  It opens on the object you were just viewing; click any node to put it in
+  the centre. Object detail is split into Attributes / Metadata /
+  Relationships / Calls to action tabs that stay put as you move between
+  objects, and there is a Back button (and Esc) to return to the map.
+- **jobmap**, **priority guide** — the same palette and header treatment.
+
 ## This repo
 
 - **[`shared/tokens.css`](shared/tokens.css)** — the canonical set of CSS

@@ -15,16 +15,16 @@
 
 :root {
   /* ---------- Ink / surface ---------- */
-  --ink: #16181d;      /* ORCA + jobmap agree on this value; overrides priority-guide's #101319 (2-of-3 majority) */
-  --bg: #f6f7f9;       /* ORCA + jobmap agree on this value; overrides priority-guide's #f3f4f6 (2-of-3 majority) */
-  --panel: #fff;       /* agreed across all three, unchanged */
+  --ink: #1c1a17; /* Oct 2026 polish pass: cool grey -> warm paper, so surfaces feel inviting rather than muddy. */
+  --bg: #f5f3ef; /* Oct 2026 polish pass: cool grey -> warm paper, so surfaces feel inviting rather than muddy. */
+  --panel: #fffefc; /* Oct 2026 polish pass: cool grey -> warm paper, so surfaces feel inviting rather than muddy. Near-white with a trace of warmth, so white cards still read as paper on the ground. */
 
-  --dim: #6b7280;      /* canonical NAME chosen from jobmap + priority-guide ("--dim", 2-of-3); canonical VALUE chosen from ORCA + jobmap (#6b7280, 2-of-3). ORCA currently calls this "--muted" and will need to rename to "--dim" in its per-app task. Overrides priority-guide's #525a67 */
-  --faint: #9aa1ac;    /* ORCA + jobmap agree on this value; overrides priority-guide's #98a0ac (2-of-3 majority) */
+  --dim: #66615a; /* Oct 2026 polish pass: cool grey -> warm paper, so surfaces feel inviting rather than muddy. */
+  --faint: #9a948a; /* Oct 2026 polish pass: cool grey -> warm paper, so surfaces feel inviting rather than muddy. */
 
   /* ---------- Hairlines ---------- */
-  --line: rgba(16,18,22,.11);   /* ORCA + jobmap agree on this value; overrides priority-guide's rgba(16,19,25,.085) */
-  --line-2: rgba(16,18,22,.2);  /* canonical NAME adopted from priority-guide's two-hairline idea (it already ships "--line"/"--line-2"); canonical VALUE reused from ORCA's existing "--line-strong" token (same concept, different name) rather than priority-guide's own rgba(16,19,25,.15), to stay tonally consistent with --line's rgb base */
+  --line: rgba(44,32,20,.10); /* Oct 2026 polish pass: cool grey -> warm paper, so surfaces feel inviting rather than muddy. Hairlines are now warm-brown alpha, not blue-black. */
+  --line-2: rgba(44,32,20,.19); /* Oct 2026 polish pass: cool grey -> warm paper, so surfaces feel inviting rather than muddy. */
 
   /* ---------- Accent ---------- */
   --accent: #2563eb;                   /* agreed across all three, unchanged */
@@ -74,8 +74,13 @@
   --ease: cubic-bezier(.22,.61,.36,1); /* adopted from jobmap's and priority-guide's existing "--ease" token (ORCA uses the identical curve inline but never named it). Standardized per Tyler's aesthetic direction as the one shared ease for hover/focus transitions, used at 120-160ms */
 
   /* ---------- Shadow ---------- */
-  --shadow-sm: 0 1px 2px rgba(16,18,22,.04), 0 14px 34px -22px rgba(16,18,22,.30);
+  --shadow-sm: 0 1px 2px rgba(44,32,20,.05), 0 14px 34px -22px rgba(44,32,20,.28);
   /* NEW addition, adapted from priority-guide's "--sheet" (the only app with a shadow token today), re-based onto --ink's rgb (16,18,22) instead of priority-guide's own (16,19,25) so it stays tonally consistent with --line. Per Tyler's aesthetic direction: soft, low-opacity shadows rather than heavy borders or drop shadows */
+
+  /* Header underline + soft drop, and the primary button's lift. Tokens rather than
+     inline values so the apps' "no hardcoded colour" checks pass and dark mode can swap them. */
+  --shadow-bar: 0 1px 0 var(--line), 0 6px 18px -14px rgba(44,32,20,.25);
+  --shadow-accent: 0 1px 2px rgba(37,99,235,.35);
 
   /* ---------- Misc ---------- */
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace; /* from ORCA, unchanged; the only app that has needed a mono stack so far */
@@ -116,6 +121,7 @@
     --act: #ff6b5c;     /* NEW: same situation as --flag; brightened from light-mode --act (#b3261e) following the --danger pattern */
     --none: #969ba6;    /* NEW: same situation as --flag/--act; lightened from light-mode --none (#8a8f98) to stay legible on the dark background while reading as neutral */
 
+    --shadow-bar: 0 1px 0 var(--line), 0 6px 18px -14px rgba(0,0,0,.6);
     --shadow-sm: 0 1px 2px rgba(0,0,0,.3), 0 14px 34px -22px rgba(0,0,0,.6); /* NEW: dark-surface shadows read against black rather than --ink, since --ink is near-white in dark mode */
   }
 }
