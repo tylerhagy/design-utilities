@@ -54,6 +54,9 @@
   --t-display: 28px;
   --t-hero: 38px;
 
+  /* ---------- App bar ---------- */
+  --bar-h: 52px; /* one height for all three apps' top bar; it drifted to 54px in ORCA once, so it is a token now */
+
   /* ---------- Spacing scale ---------- */
   /* Adopted from ORCA (the only app with a named scale — jobmap and
      priority-guide hardcode px throughout). No values changed; per-app
