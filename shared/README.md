@@ -1,5 +1,10 @@
 # shared/
 
+> **Superseded (2026-11-20).** The family's design system now lives in **DesignKit** (`~/Code/DesignKit`):
+> one token source (`tokens/tokens.json`) generates the CSS the three tools carry, and `bin/design-family check`
+> reports drift automatically. `tokens.css` below is the earlier hand-synced copy, kept for reference and for the
+> landing page; do not extend it. See `~/Code/DesignKit/DESIGN.md` ("The web tools: family chrome").
+
 ## `tokens.css` — source of truth
 
 `tokens.css` is the **canonical** set of CSS custom properties for the ORCA

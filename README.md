@@ -13,6 +13,16 @@ account, no server beyond a local one. The markdown file you point them at is
 always the source of truth — the app is a better way to read and edit it, not
 a database that happens to export one.
 
+## Design system
+
+The three tools share one design system, **DesignKit** (`~/Code/DesignKit`), the same one the Mac apps (Margin, Ambient) use.
+Each tool's `index.html` carries a generated block between `designkit:begin` and `designkit:end` markers; do not edit it by
+hand. Change `tokens/tokens.json` or `tokens/chrome.css` in DesignKit and run `bin/design-family update`, which regenerates
+the block in every tool, rebuilds and tests each one, and writes a before/after review sheet.
+
+**The design studio** (`bin/design-family studio`, port 8040) hosts all three tools in one window with a remembered folder per
+tool, which is the easiest way for a teammate to use them.
+
 ## Getting started
 
 Clone whichever tool(s) you want. They don't depend on each other.
